@@ -1,5 +1,6 @@
 <script setup>
-// import data from "../assets/data.json";
+// dengan menggunakan script setup kita tidak perlu mendeklarasikan export default & setup() secara manual
+
 import ProductCard from "./ProductCard.vue";
 import {
   ref,
@@ -27,22 +28,33 @@ async function fetchProducts(url) {
 fetchProducts("https://dummyjson.com/products");
 
 onBeforeMount(() => {
-  console.log("onBeforeMount");
+  // biasanya digunakan untuk merubah data sebelum komponen di-mount, jarang digunakan
+  console.log("lifecyle ini akan dipanggil sebelum komponen di-mount");
 });
+
 onMounted(() => {
-  console.log("onMounted");
+  // biasanya digunakan untuk interaksi dengan DOM, contohnya untuk menginisialisasi plugin atau library yang membutuhkan DOM
+  console.log("lifecyle ini akan dipanggil setelah komponen di-mount");
 });
+
 onBeforeUpdate(() => {
-  console.log("onBeforeUpdate");
+  // biasanya digunakan untuk merubah data sebelum komponen di-update, contohnya untuk menyimpan scroll position saat ini
+  console.log("lifecyle ini akan dipanggil sebelum komponen di-update");
 });
+
 onUpdated(() => {
-  console.log("onUpdated");
+  // biasanya digunakan untuk interaksi dengan DOM yang sudah di-update, contohnya untuk restore scroll position setelah di update
+  console.log("lifecyle ini akan dipanggil setelah komponen di-update");
 });
+
 onBeforeUnmount(() => {
-  console.log("onBeforeUnmount");
+  // biasanya digunakan untuk membersihkan event listener atau interval yang sudah di-set, contohnya untuk mematikan event lister untuk aplikasi realtime
+  console.log("lifecyle ini akan dipanggil sebelum komponen di-unmount");
 });
+
 onUnmounted(() => {
-  console.log("onUnmounted");
+  // biasanya digunakan untuk final cleanup, contohnya untuk disconnect dari external service
+  console.log("lifecyle ini akan dipanggil setelah komponen di-unmount");
 });
 
 // Option API example
