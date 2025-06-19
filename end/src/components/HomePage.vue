@@ -1,4 +1,4 @@
-<script setup>
+<script>
 // dengan menggunakan script setup kita tidak perlu mendeklarasikan export default & setup() secara manual
 
 import ProductCard from "./ProductCard.vue";
@@ -63,13 +63,53 @@ onUnmounted(() => {
 
 // Option API example
 // export default {
-//   components : {
+//   components: {
 //     ProductCard
 //   },
 //   data() {
 //     return {
-//       products: data,
+//       products: [],
+//       loading: false,
 //     }
+//   },
+//   methods: {
+//     async fetchProducts(url) {
+//       try {
+//         this.loading = true;
+//         const response = await fetch(url);
+//         const data = await response.json();
+//         this.products = data.products;
+//       } catch (error) {
+//         console.error("Error fetching products:", error);
+//       } finally {
+//         this.loading = false;
+//       }
+//     },
+//   },
+//   beforeCreate() {
+//     console.log("lifecyle ini akan dipanggil sebelum instance dibuat");
+//   },
+//   created() {
+//     console.log("lifecyle ini akan dipanggil setelah instance dibuat");
+//     this.fetchProducts("https://dummyjson.com/products");
+//   },
+//   beforeMount() {
+//     console.log("lifecyle ini akan dipanggil sebelum komponen di-mount");
+//   },
+//   mounted() {
+//     console.log("lifecyle ini akan dipanggil setelah komponen di-mount");
+//   },
+//   beforeUpdate() {
+//     console.log("lifecyle ini akan dipanggil sebelum komponen di-update");
+//   },
+//   updated() {
+//     console.log("lifecyle ini akan dipanggil setelah komponen di-update");
+//   },
+//   beforeUnmount() {
+//     console.log("lifecyle ini akan dipanggil sebelum komponen di-unmount");
+//   },
+//   unmounted() {
+//     console.log("lifecyle ini akan dipanggil setelah komponen di-unmount");
 //   }
 // }
 </script>
@@ -84,9 +124,7 @@ onUnmounted(() => {
     <main class="my-5 bg-white grid grid-cols-4 gap-5">
       <div
         class="h-full flex flex-col justify-center items-center bg-yellow-400 border-2 border-black p-5 rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)]"
-        v-for="product in products"
-        :key="product.id"
-      >
+        v-for="product in products" :key="product.id">
         <!-- // prop example -->
         <ProductCard :product="product" />
       </div>
